@@ -4,16 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "parcel src/index.html",
     "format": "prettier -w \"src/**/*.{html,css,js}\"",
-    "lint": "eslint \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint \"src/**/*.js\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
   "devDependencies": {
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
+    "parcel": "^2.0.1",
     "prettier": "^2.4.1"
   }
 }
