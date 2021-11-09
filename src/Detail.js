@@ -1,7 +1,39 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router";
+
 const Detail = () => {
+  const params = useParams();
+  const [loading, setLoading] = useState(false);
+  const [info, setInfo] = useState({});
+
+  useEffect(() => {
+    fetchInfo();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function fetchInfo() {
+    setLoading(true);
+    const res = await fetch(
+      `https://pets-v2.dev-apis.com/pets?id=${params.id}`
+    );
+    const json = await res.json();
+    setInfo(json.pets[0]);
+    setLoading(false);
+  }
+
   return (
-    <div>
-      <h2>Hi!</h2>
+    <div className="details">
+      {loading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <>
+          <h1>{info.name}</h1>
+          <h2>
+            {info.animal} - {info.breed} - {info.city}, {info.state}
+          </h2>
+          <button>Adopt {info.name}</button>
+          <p>{info.description}</p>
+        </>
+      )}
     </div>
   );
 };
