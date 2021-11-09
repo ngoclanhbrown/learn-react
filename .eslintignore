@@ -1,0 +1,13 @@
+node_modules/
+
+dist/
+build/
+
+.vscode/
+coverage/
+
+.cache/
+.parcel-cache/
+
+.env
+.DS_Store
