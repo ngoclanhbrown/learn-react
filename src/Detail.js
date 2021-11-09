@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import Carousel from "./Carousel";
 
 const Detail = () => {
   const params = useParams();
@@ -26,6 +27,7 @@ const Detail = () => {
         <h2>Loading...</h2>
       ) : (
         <>
+          <Carousel images={info.images} />
           <h1>{info.name}</h1>
           <h2>
             {info.animal} - {info.breed} - {info.city}, {info.state}
