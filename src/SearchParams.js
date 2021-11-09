@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Pet from "./Pet";
+import useBreedList from "./useBreedList";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
   const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
+  const breeds = useBreedList(animal);
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
 
@@ -59,8 +61,18 @@ const SearchParams = () => {
         </label>
         <label htmlFor="breed">
           Breed
-          <select>
+          <select
+            value={breed}
+            onChange={(e) => setBreed(e.target.value)}
+            onBlur={(e) => setBreed(e.target.value)}
+            disabled={!breeds.length}
+          >
             <option />
+            {breeds.map((breed) => (
+              <option key={breed} value={breed}>
+                {breed}
+              </option>
+            ))}
           </select>
         </label>
         <button type="submit">Submit</button>
