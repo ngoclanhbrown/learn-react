@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import SearchParams from "./SearchParams";
 import Detail from "./Detail";
@@ -21,4 +20,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;
