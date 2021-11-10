@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router";
 import ThemeContext from "./ThemeContext";
+import Modal from "./Modal";
 import Carousel from "./Carousel";
 
 const Detail = () => {
   const params = useParams();
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [info, setInfo] = useState({});
   const [themeColor] = useContext(ThemeContext);
 
@@ -23,6 +25,14 @@ const Detail = () => {
     setLoading(false);
   }
 
+  function toggleModal() {
+    setShowModal(!showModal);
+  }
+
+  function adopt() {
+    window.location = "https://google.com";
+  }
+
   return (
     <div className="details">
       {loading ? (
@@ -38,10 +48,27 @@ const Detail = () => {
             style={{
               backgroundColor: themeColor,
             }}
+            onClick={toggleModal}
           >
             Adopt {info.name}
           </button>
           <p>{info.description}</p>
+          {showModal && (
+            <Modal>
+              <h1>Would you like to adopt {info.name}?</h1>
+              <div className="buttons">
+                <button onClick={adopt} style={{ backgroundColor: themeColor }}>
+                  Yes
+                </button>
+                <button
+                  onClick={toggleModal}
+                  style={{ backgroundColor: themeColor }}
+                >
+                  No
+                </button>
+              </div>
+            </Modal>
+          )}
         </>
       )}
     </div>
