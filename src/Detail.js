@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router";
+import ThemeContext from "./ThemeContext";
 import Carousel from "./Carousel";
 
 const Detail = () => {
   const params = useParams();
   const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState({});
+  const [themeColor] = useContext(ThemeContext);
 
   useEffect(() => {
     fetchInfo();
@@ -32,7 +34,13 @@ const Detail = () => {
           <h2>
             {info.animal} - {info.breed} - {info.city}, {info.state}
           </h2>
-          <button>Adopt {info.name}</button>
+          <button
+            style={{
+              backgroundColor: themeColor,
+            }}
+          >
+            Adopt {info.name}
+          </button>
           <p>{info.description}</p>
         </>
       )}
